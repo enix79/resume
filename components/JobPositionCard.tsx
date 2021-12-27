@@ -27,7 +27,7 @@ export default function JobPositionCard({position, period, company, companyLogo,
             size="large"
             />
         }
-        style={{ width: 450, margin: 50, borderRadius: "5px" }} 
+        style={{ width: 450, borderRadius: "5px" }} 
       >
         <ul style={{paddingLeft: 15}}>
             { tasks.map((task, index) => <li key={index} style={{fontSize: "12px"}}>{task}</li>)}
