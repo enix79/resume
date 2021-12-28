@@ -1,47 +1,58 @@
 import JobPositionCard from '../components/JobPositionCard';
 import hmmh_logo from '../assets/hmmh_logo.png';
 import sonepar_logo from '../assets/sonepar_logo.svg';
-import me from '../assets/me.jpg';
+import Polywork from '../assets/polywork-rubix-icon-black.svg';
+import xing from '../assets/xing.svg';
+
 import Image from 'next/image';
-import { Layout, Timeline, Card, Typography, Tabs } from 'antd';
+import { Layout, Tabs, Card, Avatar } from 'antd';
+import ProfileCard from '../components/ProfileCard'
 import { LinkedinFilled } from '@ant-design/icons';
-const { Text } = Typography;
+import styles from './index.module.scss';
 const { Header, Footer, Content } = Layout;
 const { TabPane } = Tabs;
 
+
+// https://www.linkedin.com/in/igor-gonak-81319b142/
 export default function Home() {
-  const profileTitle = (
-    <>
-        <Text>Igor Gonak</Text><br/>
-        <Text type="secondary">Frontend Developer</Text>
-    </>
-);
   return (
-    <Layout style={{ height: "100vh"}}>
-        <Header style={{ background: "#f0f2f5", border: "1px solid black"}}><LinkedinFilled style={{fontSize: 25}} /></Header>
-        <Content style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <div style={{ display: "flex"}}>
-            <Card title={profileTitle}>
-                <div style={{borderRadius: '50%', width: 200, height: 200, overflow: 'hidden'}}>
-                  <Image alt="me" src={me} width="200" height="200" layout="fixed" className="profilePicture" />
+    <Layout className={styles.container}>
+        <Header className={styles.header}>
+          Lass uns verbinden über
+          <LinkedinFilled style={{fontSize: 25}} />
+          {/* <div className={styles.socialMediaIcon}><Image src={polywork} height={25} width={25} alt="polywork"/></div> */}
+          <Image src={xing} height={25} width={25} alt="xing" className={styles.socialMediaIcon}/>
+          <Image src={polywork} height={25} width={25} alt="polywork" className={styles.socialMediaIcon}/>
+        </Header>
+        <Content className={styles.mainContent}>
+            <Tabs defaultActiveKey='Test1' tabBarGutter={50} style={{width: 750, height: 750}} centered>      
+              <TabPane tab="About" key="Test1">
+                <div style={{display: "flex", gap: 40}}>
+                  <ProfileCard />
+                  <Card>Hi, mein Name ist Igor und ich bin ein Frontend Developer. Das Web Development bringe ich mir seit etwa 2 Jahren selbst bei. Als JS-Framework habe ich mich auf React committed.</Card>
                 </div>
-              <Timeline style={{marginLeft: 10, marginTop: 20}}>
-                <Timeline.Item style={{fontSize: "12px"}}>Geburtstag: 10.05.1988</Timeline.Item>
-                <Timeline.Item style={{fontSize: "12px"}}>Herkunft: Russische Föderation</Timeline.Item>
-                <Timeline.Item style={{fontSize: "12px"}}>Staatsangehörigkeit: Deutsch</Timeline.Item>
-              </Timeline>
-            </Card>
-            <Tabs defaultActiveKey='Test1' type="card" tabPosition="left" style={{width: 600, height: 600}}>         
-              <TabPane tab="About" key="Test2">TODO Allgemeine Infos</TabPane>
-              <TabPane tab="Arbeitsstellen" key="Test1"><JobPositions /></TabPane>
-              <TabPane tab="Projekte" key="Test3">Test3 Content</TabPane>
-              <TabPane tab="Skills" key="Test4">Test4 Content</TabPane>
-            </Tabs>
-            
-          </div>
+                </TabPane>
+              <TabPane tab="Arbeitsstellen" key="Test2">
+              <div style={{display: "flex", gap: 40}}>
+                  <ProfileCard />
+                  <JobPositions />
+                </div>
+                </TabPane>
+              <TabPane tab="Projekte" key="Test3">
+                <div style={{display: "flex", gap: 40}}>
+                  <ProfileCard />
+                  <JobPositions />
+                </div>
+              </TabPane>
+              <TabPane tab="Skills" key="Test4">
+                <div style={{display: "flex", gap: 40}}>
+                  <ProfileCard />
+                  Test4 Content
+                </div>
+                </TabPane>
+            </Tabs>  
         </Content>
-        <Footer style={{ border: "1px solid black"}}>Footer</Footer>
-      
+        <Footer style={{ border: "1px solid black"}}>Footer</Footer>    
     </Layout>
   )
 }
@@ -49,7 +60,7 @@ export default function Home() {
 
 const JobPositions = () => {
   return (
-    <div>
+    <div style={{display: "flex", flexDirection: "column", gap: 20}}>
       <JobPositionCard
         company='hmmh'
         companyLogo={<Image src={hmmh_logo} alt="hmmh"/>}

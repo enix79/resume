@@ -1,0 +1,26 @@
+@use "../styles/globals.scss";
+
+.container {
+  height: 100vh;
+  background-color: white;
+}
+
+.header {
+  background-color: white;
+  margin-left: auto;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialMediaIcon {
+  & > span {
+    color: red;
+  }
+}
